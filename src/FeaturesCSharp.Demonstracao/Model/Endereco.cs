@@ -4,15 +4,18 @@
 
     public class Endereco
     {
-        public Endereco(string logradouro, string? numero, string? complemento, string bairro)
+        public Endereco(Classe classe, bool entrega, string logradouro, string? numero, string? complemento, string bairro)
         {
+            Classe = Classe;
+            EntregaAgendada = entrega;
             Logradouro = !string.IsNullOrEmpty(logradouro)? logradouro : throw new ArgumentNullException(nameof(logradouro));
             Numero = numero;
             Complemento = complemento;
             Bairro = !string.IsNullOrEmpty(bairro) ? bairro : throw new ArgumentNullException(nameof(logradouro));
         }
 
-
+        public Classe Classe { get; set; }
+        public bool EntregaAgendada { get; set; }
         public string Logradouro { get; private set; }
         public string? Numero { get; private set; }
         public string? Complemento { get; private set; }
@@ -29,5 +32,9 @@
                 (string l, null, null, string b) => $"{l} - {b}"
             };
         }
+    }
+    public enum Classe
+    {
+        A, B, C, D
     }
 }
